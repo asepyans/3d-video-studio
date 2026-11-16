@@ -9,6 +9,7 @@ A code-driven 3D cartoon Shorts workspace. Build vertical animated stories with 
 - Reference Short analysis and comparison tools.
 - Geometry checks for framing, clipping, text visibility, camera movement, and character rig limitations.
 - Starter project template and setup utility.
+- JSON shot-plan generation and timeline validation.
 
 ## Requirements
 
@@ -44,6 +45,22 @@ Example prompts:
 
 The workflow pauses at review checkpoints so you can approve or revise each stage.
 
+## Generate and validate a shot plan
+
+Create a structured plan with three acts and evenly divided timing:
+
+```bash
+python tools/short_planner.py --topic "Why restaurants started using pagers" --duration 60 --shot-seconds 4 --output plan.json
+```
+
+Check the plan for missing fields, timing gaps, overlaps, and incorrect totals:
+
+```bash
+python tools/validate_plan.py plan.json
+```
+
+Add `--strict` to treat warnings as errors. The planner and validator use only Python's standard library.
+
 ## Useful tools
 
 | Tool | Purpose |
@@ -55,6 +72,7 @@ The workflow pauses at review checkpoints so you can approve or revise each stag
 | `tools/sbs_sheet.py` | Create side-by-side review sheets |
 | `tools/compare_video.py` | Compare output against a reference |
 | `tools/short_planner.py` | Generate a structured act/shot timing plan from a topic |
+| `tools/validate_plan.py` | Validate shot-plan structure and timeline continuity |
 
 ## Project structure
 
