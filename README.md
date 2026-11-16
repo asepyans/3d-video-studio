@@ -9,7 +9,7 @@ A code-driven 3D cartoon Shorts workspace. Build vertical animated stories with 
 - Reference Short analysis and comparison tools.
 - Geometry checks for framing, clipping, text visibility, camera movement, and character rig limitations.
 - Starter project template and setup utility.
-- JSON shot-plan generation and timeline validation.
+- JSON shot-plan generation, timeline validation, and CSV shot-sheet export.
 
 ## Requirements
 
@@ -45,7 +45,7 @@ Example prompts:
 
 The workflow pauses at review checkpoints so you can approve or revise each stage.
 
-## Generate and validate a shot plan
+## Generate, validate, and export a shot plan
 
 Create a structured plan with three acts and evenly divided timing:
 
@@ -59,7 +59,13 @@ Check the plan for missing fields, timing gaps, overlaps, and incorrect totals:
 python tools/validate_plan.py plan.json
 ```
 
-Add `--strict` to treat warnings as errors. The planner and validator use only Python's standard library.
+Export the JSON plan into a spreadsheet-friendly CSV shot sheet (includes act, timing, visual beat, camera, captions, voiceover, and SFX):
+
+```bash
+python tools/plan_to_csv.py plan.json --output shot_sheet.csv
+```
+
+The CSV can also be printed to stdout by omitting `--output`. Add `--strict` to the validator to treat warnings as errors. These planning utilities use only Python's standard library.
 
 ## Useful tools
 
@@ -73,6 +79,7 @@ Add `--strict` to treat warnings as errors. The planner and validator use only P
 | `tools/compare_video.py` | Compare output against a reference |
 | `tools/short_planner.py` | Generate a structured act/shot timing plan from a topic |
 | `tools/validate_plan.py` | Validate shot-plan structure and timeline continuity |
+| `tools/plan_to_csv.py` | Export a shot plan to a production-friendly CSV shot sheet |
 
 ## Project structure
 
